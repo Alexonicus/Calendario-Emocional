@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendario Emocional</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f4f8;
+      margin: 20px;
+      color: #0c4a6e;
+    }
+    #calendar-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    #calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+    .day {
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      min-height: 60px;
+    }
+    .day:hover {
+      background: #e0f2fe;
+    }
+    #modal {
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #aaa;
+      z-index: 10;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 Calendario Emocional</h1>
+
+  <div id="calendar-controls">
+    <button onclick="changeMonth(-1)">⬅️ Anterior</button>
+    <h2 id="monthLabel"></h2>
+    <button onclick="changeMonth(1)">Siguiente ➡️</button>
+  </div>
+
+  <div id="calendar"></div>
+
+  <div id="modal" class="hidden">
+    <h3>Registrar emoción</h3>
+    <select id="emotion-select">
+      <option value="">Selecciona una emoción</option>
+      <option value="feliz">😊 Feliz</option>
+      <option value="triste">😢 Triste</option>
+      <option value="estresado">😣 Estresado</option>
+      <option value="emocionado">🤩 Emocionado</option>
+      <option value="ansioso">😰 Ansioso</option>
+    </select>
+    <br><br>
+    <textarea id="emotion-text" placeholder="¿Por qué te sentiste así?" rows="4" style="width: 100%;"></textarea>
+    <br><br>
+    <button onclick="saveEmotion()">Guardar</button>
+    <button onclick="closeModal()">Cancelar</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+    <h2 style="margin-top: 30px;">Gráfica de emociones del mes</h2>
+    <canvas id="emotionChart" width="400" height="200"></canvas>
+
+    <h2 style="margin-top: 30px;">Resumen del mes</h2>
+    <div id="monthlySummary" style="background: #f0f4f8; padding: 15px; border-radius: 10px;"></div>
+    <h2 style="margin-top: 40px;">¿Necesitas hablar con alguien?</h2>
+    <div id="helpSection" style="display: none; background: #ffe4e6; padding: 15px; border-radius: 10px; margin-top: 40px;">
+      <h2>¿Necesitas hablar con alguien?</h2>
+      <p><strong>Líneas de ayuda psicológica en México:</strong></p>
+      <ul>
+        <li><strong>SAPTEL (24h):</strong> 800 472 7835</li>
+        <li><strong>Línea de la Vida (adicciones, salud mental):</strong> 800 911 2000</li>
+        <li><strong>UNAM (Orientación psicológica):</strong> 55 5025 0855</li>
+        <li><strong>Locatel CDMX:</strong> 55 5658 1111</li>
+      </ul>
+      <p style="margin-top: 10px;">No estás solo. Si necesitas ayuda, hay personas que te escuchan 💛</p>
+    </div>
+
+
+
+</body>
+</html>
